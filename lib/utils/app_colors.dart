@@ -14,6 +14,8 @@ class AppColors {
   static const scaffoldBackground = Color(0xFFF3F2F7);
   static const cardBackground = Color(0xFFF0F0F0);
   static const containerBackground = Color(0xFFDDDBE6);
+  static const circleBackground = Color(0xFFC2E7D9);
+
 
   // Text Colors
   static const text = Color(0xFF000000);

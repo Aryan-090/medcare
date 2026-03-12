@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medcare/src/onboarding/onboarding_screen_1.dart';
+import 'package:medcare/src/register/register_screen.dart';
 import 'package:medcare/src/splash/splash_screen.dart';
+import 'package:medcare/src/splash/widgets/splash_screen_1.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,6 +46,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return const SplashScreen();
+    return const SplashScreen1();
   }
 }

@@ -8,12 +8,15 @@ class PrimaryButtonWidget extends StatelessWidget {
     required this.title,
     this.radius,
     this.backgroundColor,
+    this.color,
   });
 
   final String title;
   final Function() onTap;
   final double? radius;
   final Color? backgroundColor;
+  final Color? color;
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,8 @@ class PrimaryButtonWidget extends StatelessWidget {
       ),
       child: Text(
         title,
-        style: const TextStyle(
-          color: AppColors.white,
+        style: TextStyle(
+          color: color ?? AppColors.white,
           fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
