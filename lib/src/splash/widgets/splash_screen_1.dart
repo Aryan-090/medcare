@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medcare/src/login/login_screen.dart';
 import 'package:medcare/utils/app_colors.dart';
 
 import '../../../widgets/button/primary_button_widget.dart';
+import '../../register/register_screen.dart';
 
 class SplashScreen1 extends StatelessWidget {
   const SplashScreen1({super.key});
@@ -27,7 +29,7 @@ class SplashScreen1 extends StatelessWidget {
                   borderRadius: BorderRadius.circular(30),
                   border: Border.all(color: AppColors.border),
                 ),
-                child: const Center(child: Text("English"),),
+                child: const Center(child: Text("English")),
               ),
               const Spacer(),
               // SizedBox(height: 220),
@@ -44,16 +46,33 @@ class SplashScreen1 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  PrimaryButtonWidget(onTap: () {}, title: 'Next'),
+                  PrimaryButtonWidget(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LoginScreen(),
+                        ),
+                      );
+                    },
+                    title: 'Next',
+                  ),
                   const SizedBox(height: 10),
                   PrimaryButtonWidget(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RegisterScreen(),
+                        ),
+                      );
+                    },
                     title: 'Register',
                     color: AppColors.primary,
                     backgroundColor: AppColors.background,
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

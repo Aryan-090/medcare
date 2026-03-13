@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+
+import '../../../utils/app_colors.dart';
+import '../../../widgets/button/primary_button_widget.dart';
+import '../../login/login_screen.dart';
+import '../otp_screen.dart';
+import '../../splash/widgets/splash_screen_1.dart';
+
 class RegisterEmailWidget extends StatefulWidget {
   const RegisterEmailWidget({super.key});
 
@@ -7,7 +14,6 @@ class RegisterEmailWidget extends StatefulWidget {
 }
 
 class _RegisterEmailWidgetState extends State<RegisterEmailWidget> {
-
   final emailController = TextEditingController();
   final nameController = TextEditingController();
   final dobController = TextEditingController();
@@ -16,7 +22,6 @@ class _RegisterEmailWidgetState extends State<RegisterEmailWidget> {
   bool agree = false;
 
   Future<void> pickDate() async {
-
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime(2000),
@@ -26,19 +31,17 @@ class _RegisterEmailWidgetState extends State<RegisterEmailWidget> {
 
     if (pickedDate != null) {
       dobController.text =
-      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           /// EMAIL
           const Text("Email*"),
 
@@ -130,6 +133,58 @@ class _RegisterEmailWidgetState extends State<RegisterEmailWidget> {
                   style: TextStyle(fontSize: 13),
                 ),
               )
+            ],
+          ),
+
+          const SizedBox(height: 20),
+          /// REGISTER BUTTON
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: PrimaryButtonWidget(
+              title: "Register",
+              onTap: () {
+                if (emailController.text.isNotEmpty) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OtpScreen(
+                        isPhone: false,
+                        value: emailController.text,
+                      ),
+                    ),
+                  );
+                } else {
+                  // Show error or something
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Please enter an email")),
+                  );
+                }
+              },
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          /// LOGIN TEXT
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text("Already have an account? "),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Click here to login",
+                  style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
 

@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
+
+import '../../../utils/app_colors.dart';
+import '../../../widgets/button/primary_button_widget.dart';
+import '../../login/login_screen.dart';
+import '../otp_screen.dart';
+import '../../splash/widgets/splash_screen_1.dart';
+
 class RegisterPhoneWidget extends StatefulWidget {
   const RegisterPhoneWidget({super.key});
 
@@ -8,15 +15,15 @@ class RegisterPhoneWidget extends StatefulWidget {
 }
 
 class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
-
   final nameController = TextEditingController();
   final dobController = TextEditingController();
+  final phoneController = TextEditingController();
 
+  String phoneNumber = '';
   String? gender;
   bool agree = false;
 
   Future<void> pickDate() async {
-
     DateTime? pickedDate = await showDatePicker(
       context: context,
       initialDate: DateTime(2000),
@@ -26,21 +33,19 @@ class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
 
     if (pickedDate != null) {
       dobController.text =
-      "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
+          "${pickedDate.day}/${pickedDate.month}/${pickedDate.year}";
     }
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           /// PHONE
-          const Text("No Phone*"),
+          const Text("Phone Number*"),
 
           const SizedBox(height: 8),
 
@@ -51,7 +56,9 @@ class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
               border: OutlineInputBorder(),
             ),
             onChanged: (phone) {
-              print(phone.completeNumber);
+              setState(() {
+                phoneNumber = phone.completeNumber;
+              });
             },
           ),
 
@@ -78,9 +85,7 @@ class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
           DropdownButtonFormField<String>(
             hint: const Text("Choose your gender"),
             value: gender,
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-            ),
+            decoration: const InputDecoration(border: OutlineInputBorder()),
             items: const [
               DropdownMenuItem(value: "Male", child: Text("Male")),
               DropdownMenuItem(value: "Female", child: Text("Female")),
@@ -116,7 +121,6 @@ class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-
               Checkbox(
                 value: agree,
                 onChanged: (value) {
@@ -131,7 +135,61 @@ class _RegisterPhoneWidgetState extends State<RegisterPhoneWidget> {
                   "You agree to receive information and notifications sent by MedCare",
                   style: TextStyle(fontSize: 13),
                 ),
-              )
+              ),
+            ],
+          ),
+
+          const SizedBox(height: 20),
+
+          /// REGISTER BUTTON
+          SizedBox(
+            width: double.infinity,
+            height: 52,
+            child: PrimaryButtonWidget(
+              title: "Register",
+              onTap: () {
+                if (phoneNumber.isNotEmpty) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => OtpScreen(
+                        isPhone: true,
+                        value: phoneNumber,
+                      ),
+                    ),
+                  );
+                } else {
+                  // Show error or something
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Please enter a phone number")),
+                  );
+                }
+              },
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          /// LOGIN TEXT
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Already have an account? "),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  );
+                },
+                child: const Text(
+                  "Click here to login",
+                  style: TextStyle(color: AppColors.primary,fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
           ),
 

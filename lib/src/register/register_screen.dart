@@ -125,14 +125,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         : const RegisterEmailWidget(),
               ),
               const SizedBox(height: 20),
-              Container(
-                width: double.infinity,
-                height: 52,
-                child: PrimaryButtonWidget(
-                  title: "Register",
-                  onTap: () {},
-                ),
-              ),
             ],
           ),
         ),
