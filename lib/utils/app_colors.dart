@@ -13,7 +13,7 @@ class AppColors {
   static const background = Color(0xFFFFFFFF);
   static const scaffoldBackground = Color(0xFFF3F2F7);
   static const cardBackground = Color(0xFFF0F0F0);
-  static const containerBackground = Color(0xFFDDDBE6);
+  static const containerBackground = Color(0xFFF9F9F9);
   static const circleBackground = Color(0xFFC2E7D9);
 
 
@@ -31,6 +31,7 @@ class AppColors {
   static const Color containerBorder= Color(0xffEBEBEB);
   static const Color greyShade1= Color(0xffE5E5E5);
   static const Color greyContainer=Color(0xffF3F4F6);
+  static const Color tealContainer=Color(0xffC2D7E9);
 
   // States
   static const Color error = Color(0xFFD32F2F);
