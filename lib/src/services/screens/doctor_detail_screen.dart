@@ -30,7 +30,7 @@ class DoctorDetailScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(onPressed: (){
           Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios_new_outlined)),
+        }, icon: const Icon(Icons.arrow_back_ios_new_outlined)),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 16.0),
@@ -56,13 +56,13 @@ class DoctorDetailScreen extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),
-              child: SingleChildScrollView(
+              child: const SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     /// INFO
                     Row(
-                      children: const [
+                      children: [
                         Expanded(
                           child: InfoCard(
                             title: "Education",
@@ -79,10 +79,10 @@ class DoctorDetailScreen extends StatelessWidget {
                       ],
                     ),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     /// PRACTICE LOCATION
-                    const Text(
+                    Text(
                       "Practice Location",
                       style: TextStyle(
                         fontSize: 14,
@@ -90,13 +90,13 @@ class DoctorDetailScreen extends StatelessWidget {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    const PracticeLocationCard(),
+                    SizedBox(height: 12),
+                    PracticeLocationCard(),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     /// WORKING HOURS
-                    const Text(
+                    Text(
                       "Working Hours",
                       style: TextStyle(
                         fontSize: 14,
@@ -104,8 +104,8 @@ class DoctorDetailScreen extends StatelessWidget {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    const WorkingHours(times: [
+                    SizedBox(height: 12),
+                    WorkingHours(times: [
                       "9.00 AM",
                       "10.00 AM",
                       "1.00 PM",
@@ -114,10 +114,10 @@ class DoctorDetailScreen extends StatelessWidget {
                       "4.00 PM"
                     ]),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     /// SCHEDULE SELECTOR
-                    const Text(
+                    Text(
                       "Schedule",
                       style: TextStyle(
                         fontSize: 14,
@@ -125,8 +125,8 @@ class DoctorDetailScreen extends StatelessWidget {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 12),
-                    const ScheduleSelector(days: [
+                    SizedBox(height: 12),
+                    ScheduleSelector(days: [
                       {"day": "Wed", "date": "22"},
                       {"day": "Thu", "date": "23"},
                       {"day": "Fri", "date": "24"},
@@ -135,10 +135,10 @@ class DoctorDetailScreen extends StatelessWidget {
                       {"day": "Mon", "date": "27"},
                     ]),
 
-                    const SizedBox(height: 16),
+                    SizedBox(height: 16),
 
                     /// REVIEWS
-                    const Text(
+                    Text(
                       "Review",
                       style: TextStyle(
                         fontSize: 14,
@@ -146,19 +146,19 @@ class DoctorDetailScreen extends StatelessWidget {
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    SizedBox(height: 12),
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       clipBehavior: Clip.none,
                       child: Row(
-                        children: const [
+                        children: [
                           ReviewCard(),
                           ReviewCard(),
                         ],
                       ),
                     ),
                     
-                    const SizedBox(height: 24), // Extra space for bottom nav
+                    SizedBox(height: 24), // Extra space for bottom nav
                   ],
                 ),
               ),
@@ -181,8 +181,8 @@ class DoctorDetailScreen extends StatelessWidget {
                 border: Border.all(color: AppColors.primary),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              child: Row(
-                children: const [
+              child: const Row(
+                children: [
                   Icon(Icons.chat_outlined, color: AppColors.primary, size: 20),
                   SizedBox(width: 8),
                   Text(
