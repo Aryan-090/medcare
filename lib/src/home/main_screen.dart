@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:medcare/src/services/services.dart';
 import '../../widgets/bottomNavigationBar/custom_bottom_nav.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  const MainScreen({super.key, this.initialIndex = 0});
+
+  final int initialIndex;
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -11,14 +14,20 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
 
-  int currentIndex = 0;
+  late int currentIndex;
 
-  final List<Widget> screens = const [
-    HomeTab(),
-    Center(child: Text("Services")),
-    Center(child: Text("History")),
-    Center(child: Text("Profile")),
+  final List<Widget> screens = [
+    const HomeTab(),
+    Services(),
+    const Center(child: Text("History")),
+    const Center(child: Text("Profile")),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    currentIndex = widget.initialIndex;
+  }
 
   @override
   Widget build(BuildContext context) {

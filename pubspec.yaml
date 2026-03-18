@@ -65,7 +65,7 @@ flutter:
     - assets/icon/
     - assets/banner/
     - assets/categories/
-    - assets/doctor/
+    - assets/doctors/
     - assets/product/
     - assets/hospital/
     - assets/articles/

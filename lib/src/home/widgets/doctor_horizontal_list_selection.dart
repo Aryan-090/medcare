@@ -8,22 +8,22 @@ class DoctorHorizontalSection extends StatelessWidget {
 
     final List<Map<String, String>> doctors = [
       {
-        "image": "assets/doctor/doc1.png",
+        "image": "assets/doctors/doc1.png",
         "name": "Dr. Leonard Campbell",
         "speciality": "Heart Specialist"
       },
       {
-        "image": "assets/doctor/doc2.png",
+        "image": "assets/doctors/doc2.png",
         "name": "Dr. Sarah Johnson",
         "speciality": "Dentist"
       },
       {
-        "image": "assets/doctor/doc1.png",
+        "image": "assets/doctors/doc1.png",
         "name": "Dr. Leonard Campbell",
         "speciality": "Heart Specialist"
       },
       {
-        "image": "assets/doctor/doc2.png",
+        "image": "assets/doctors/doc2.png",
         "name": "Dr. Sarah Johnson",
         "speciality": "Dentist"
       },
