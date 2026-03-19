@@ -29,7 +29,9 @@ class _WorkingHoursState extends State<WorkingHours> {
             });
           },
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            height: 37,
+            width: 78,
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.primary : Colors.white,
               borderRadius: BorderRadius.circular(8),
@@ -41,7 +43,7 @@ class _WorkingHoursState extends State<WorkingHours> {
               time,
               style: TextStyle(
                 color: isSelected ? Colors.white : Colors.grey.shade600,
-                fontSize: 13,
+                fontSize: 12,
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
               ),
             ),

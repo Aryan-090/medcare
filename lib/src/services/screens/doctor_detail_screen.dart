@@ -7,6 +7,7 @@ import '../widgets/review_card.dart';
 import '../widgets/schedule_selector.dart';
 import '../widgets/working_hours.dart';
 import '../widgets/practice_location_card.dart';
+import 'appointment_confirmation_screen.dart';
 
 class DoctorDetailScreen extends StatelessWidget {
   final Map<String, String> doctor;
@@ -28,9 +29,12 @@ class DoctorDetailScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: const Icon(Icons.arrow_back_ios_new_outlined)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        ),
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 16.0),
@@ -105,14 +109,16 @@ class DoctorDetailScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 12),
-                    WorkingHours(times: [
-                      "9.00 AM",
-                      "10.00 AM",
-                      "1.00 PM",
-                      "2.00 PM",
-                      "3.00 PM",
-                      "4.00 PM"
-                    ]),
+                    WorkingHours(
+                      times: [
+                        "9.00 AM",
+                        "10.00 AM",
+                        "1.00 PM",
+                        "2.00 PM",
+                        "3.00 PM",
+                        "4.00 PM",
+                      ],
+                    ),
 
                     SizedBox(height: 16),
 
@@ -126,14 +132,16 @@ class DoctorDetailScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 12),
-                    ScheduleSelector(days: [
-                      {"day": "Wed", "date": "22"},
-                      {"day": "Thu", "date": "23"},
-                      {"day": "Fri", "date": "24"},
-                      {"day": "Sat", "date": "25"},
-                      {"day": "Sun", "date": "26"},
-                      {"day": "Mon", "date": "27"},
-                    ]),
+                    ScheduleSelector(
+                      days: [
+                        {"day": "Wed", "date": "22"},
+                        {"day": "Thu", "date": "23"},
+                        {"day": "Fri", "date": "24"},
+                        {"day": "Sat", "date": "25"},
+                        {"day": "Sun", "date": "26"},
+                        {"day": "Mon", "date": "27"},
+                      ],
+                    ),
 
                     SizedBox(height: 16),
 
@@ -150,14 +158,9 @@ class DoctorDetailScreen extends StatelessWidget {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       clipBehavior: Clip.none,
-                      child: Row(
-                        children: [
-                          ReviewCard(),
-                          ReviewCard(),
-                        ],
-                      ),
+                      child: Row(children: [ReviewCard(), ReviewCard()]),
                     ),
-                    
+
                     SizedBox(height: 24), // Extra space for bottom nav
                   ],
                 ),
@@ -169,12 +172,16 @@ class DoctorDetailScreen extends StatelessWidget {
 
       /// BOTTOM BUTTONS
       bottomNavigationBar: Container(
+        height: 93,
+        width: 428,
         color: Colors.white,
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 32),
+        padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
         child: Row(
           children: [
             /// CHAT BUTTON
             Container(
+              height: 51,
+              width: 105,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(30),
@@ -196,27 +203,35 @@ class DoctorDetailScreen extends StatelessWidget {
                 ],
               ),
             ),
-            
+
             const SizedBox(width: 16),
 
             /// MAKE AN APPOINTMENT BUTTON
             Expanded(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
-                  foregroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+              child: SizedBox(
+                height: 51,
+                width: 255,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AppointmentConfirmationScreen(doctor: doctor),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColors.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    elevation: 0,
                   ),
-                  elevation: 0,
-                ),
-                child: const Text(
-                  "Make An Appointment",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+                  child: const Text(
+                    "Make An Appointment",
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
                   ),
                 ),
               ),

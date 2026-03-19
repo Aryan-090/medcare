@@ -35,7 +35,7 @@ class InfoCard extends StatelessWidget {
           Text(
             value,
             style: const TextStyle(
-              fontSize: 14,
+              fontSize: 12,
               fontWeight: FontWeight.w600,
               color: AppColors.primary,
             ),

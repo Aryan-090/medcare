@@ -26,6 +26,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "Cardiology Specialist",
         "experience": "3 Years",
         "availability": "Available on Wed - Sat",
+        "education": "University of Milan",
+        "license": "1276126552881",
       },
       {
         "image": "assets/doctors/doc4.png",
@@ -33,6 +35,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "Orthopedics Specialist",
         "experience": "3 Years",
         "availability": "Available on Wed - Tue",
+        "education": "Polytechnic of Turin",
+        "license": "1234567890123",
       },
       {
         "image": "assets/doctors/doc5.png",
@@ -40,6 +44,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "Dermatology Specialist",
         "experience": "6 Years",
         "availability": "Available on Wed - Sat",
+        "education": "University of Berlin",
+        "license": "1111111111111",
       },
       {
         "image": "assets/doctors/doc6.png",
@@ -47,6 +53,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "General Surgery",
         "experience": "2 Years",
         "availability": "Available on Wed - Sat",
+        "education": "AIIMS New Delhi",
+        "license": "2222222222222",
       },
       {
         "image": "assets/doctors/doc7.png",
@@ -54,6 +62,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "General Practitioner",
         "experience": "10 Years",
         "availability": "Available on Wed - Sat",
+        "education": "University of Hamburg",
+        "license": "3333333333333",
       },
       {
         "image": "assets/doctors/doc8.png",
@@ -61,6 +71,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "Spesialis Neurologi",
         "experience": "4 Years",
         "availability": "Available on Wed - Sat",
+        "education": "University of Copenhagen",
+        "license": "4444444444444",
       },
       {
         "image": "assets/doctors/doc9.png",
@@ -68,6 +80,8 @@ class _DoctorListScreenState extends State<DoctorListScreen> {
         "speciality": "General Surgery",
         "experience": "6 Years",
         "availability": "Available on Wed - Sat",
+        "education": "University of Zurich",
+        "license": "5555555555555",
       },
     ];
 

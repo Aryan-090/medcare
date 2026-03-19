@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medcare/src/services/services.dart';
 import '../../widgets/bottomNavigationBar/custom_bottom_nav.dart';
+import '../history/history_screen.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> screens = [
     const HomeTab(),
     Services(),
-    const Center(child: Text("History")),
+    const HistoryScreen(),
     const Center(child: Text("Profile")),
   ];
 
