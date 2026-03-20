@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:medcare/src/history/widgets/reschedule_bottom_sheet.dart';
 import 'package:medcare/utils/app_colors.dart';
 import 'package:medcare/widgets/button/primary_button_widget.dart';
+
+import 'notification_bottom_sheet.dart';
 
 class AppointmentHistoryCard extends StatelessWidget {
   final String image;
@@ -124,14 +127,31 @@ class AppointmentHistoryCard extends StatelessWidget {
 
               Row(
                 children: [
-                  const ImageIcon(AssetImage('assets/icon/bell.png'), size: 18,color: AppColors.primary,),
-                  const SizedBox(width: 4),
-                  Text(
-                    notificationOn ? "Notifications On" : "Notifications Off",
-                    style: TextStyle(
-                      fontSize: 12,
-                      color:
-                      notificationOn ? Colors.blue : Colors.grey,
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: Colors.transparent,
+                        builder: (context) {
+                          return const NotificationBottomSheet();
+                        },
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        const ImageIcon(AssetImage('assets/icon/bell.png'), size: 18,color: AppColors.primary,),
+                        const SizedBox(width: 4),
+                        Text(
+                          notificationOn ? "Notifications On" : "Notifications Off",
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: notificationOn
+                                ? AppColors.primary
+                                : Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -143,7 +163,16 @@ class AppointmentHistoryCard extends StatelessWidget {
                 height: 36,
                 child: PrimaryButtonWidget(
                   title: "Reschedule",
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      backgroundColor: Colors.transparent,
+                      builder: (context) {
+                        return const RescheduleBottomSheet();
+                      },
+                    );
+                  },
                 ),
               ),
             ],

@@ -16,18 +16,48 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
 
   late int currentIndex;
+  Map<String, String>? selectedDoctor;
 
-  final List<Widget> screens = [
-    const HomeTab(),
-    Services(),
-    const HistoryScreen(),
-    const Center(child: Text("Profile")),
-  ];
+  late List<Widget> screens;
 
   @override
   void initState() {
     super.initState();
     currentIndex = widget.initialIndex;
+    screens = [
+      const HomeTab(),
+      Services(),
+      HistoryScreen(
+        selectedDoctor: selectedDoctor,
+        currentNavIndex: currentIndex,
+        onNavTap: _handleNavigation,
+      ),
+      const Center(child: Text("Profile")),
+    ];
+  }
+
+  void _handleNavigation(int index) {
+    setState(() {
+      currentIndex = index;
+      // Update the HistoryScreen with current selected doctor and nav index
+      screens[2] = HistoryScreen(
+        selectedDoctor: selectedDoctor,
+        currentNavIndex: index,
+        onNavTap: _handleNavigation,
+      );
+    });
+  }
+
+  void _setSelectedDoctor(Map<String, String> doctor) {
+    setState(() {
+      selectedDoctor = doctor;
+      // Update HistoryScreen with the selected doctor
+      screens[2] = HistoryScreen(
+        selectedDoctor: selectedDoctor,
+        currentNavIndex: currentIndex,
+        onNavTap: _handleNavigation,
+      );
+    });
   }
 
   @override
@@ -41,11 +71,7 @@ class _MainScreenState extends State<MainScreen> {
 
       bottomNavigationBar: CustomBottomNav(
         currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
+        onTap: _handleNavigation,
       ),
     );
   }

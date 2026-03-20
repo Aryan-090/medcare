@@ -5,7 +5,9 @@ import '../../../utils/app_colors.dart';
 import '../../history/history_screen.dart';
 
 class AppointmentSuccessScreen extends StatelessWidget {
-  const AppointmentSuccessScreen({super.key});
+  final Map<String, String>? doctor;
+
+  const AppointmentSuccessScreen({super.key, this.doctor});
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,13 @@ class AppointmentSuccessScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => const HistoryScreen()),
+                MaterialPageRoute(
+                  builder: (context) => HistoryScreen(
+                    selectedDoctor: doctor,
+                    currentNavIndex: 2,
+                    isStandalone: true,
+                  ),
+                ),
               );
             },
             title: 'Go To Details',

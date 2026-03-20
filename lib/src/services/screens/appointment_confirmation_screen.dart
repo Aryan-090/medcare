@@ -60,10 +60,11 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const AppointmentSuccessScreen(),
+                    builder: (context) => AppointmentSuccessScreen(
+                      doctor: doctor,
+                    ),
                   ),
                 );
-                Navigator.canPop(context);
               },
 
               // Navigate or show success
