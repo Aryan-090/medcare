@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medcare/utils/app_colors.dart';
 
+import '../../chat/chat_doctor_screen.dart';
 import '../widgets/doctor_profile_header.dart';
 import '../widgets/info_card.dart';
 import '../widgets/review_card.dart';
@@ -179,28 +180,33 @@ class DoctorDetailScreen extends StatelessWidget {
         child: Row(
           children: [
             /// CHAT BUTTON
-            Container(
-              height: 51,
-              width: 105,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: AppColors.primary),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-              child: const Row(
-                children: [
-                  Icon(Icons.chat_outlined, color: AppColors.primary, size: 20),
-                  SizedBox(width: 8),
-                  Text(
-                    "Chat",
-                    style: TextStyle(
-                      color: AppColors.primary,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
+            GestureDetector(
+              onTap: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ChatScreen(selectedDoctor: doctor)));
+              },
+              child: Container(
+                height: 51,
+                width: 105,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  border: Border.all(color: AppColors.primary),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                child: const Row(
+                  children: [
+                    Icon(Icons.chat_outlined, color: AppColors.primary, size: 20),
+                    SizedBox(width: 8),
+                    Text(
+                      "Chat",
+                      style: TextStyle(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
 

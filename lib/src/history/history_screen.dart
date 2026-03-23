@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medcare/src/history/widgets/upcoming_history_card.dart';
 import 'package:medcare/src/history/widgets/completed_history_card.dart';
 import 'package:medcare/src/history/widgets/history_tab_switch.dart';
+import 'package:medcare/src/history/widgets/history_upcoming_empty.dart';
+import 'package:medcare/src/history/widgets/history_completed_empty.dart';
 import 'package:medcare/src/home/main_screen.dart';
 
 import '../../utils/app_colors.dart';
@@ -26,32 +28,63 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+
   int selectedTab = 0;
+
+  /// DEMO LISTS
+  /// later you can replace with Firebase data
+  List<Map<String, String>> upcomingAppointments = [];
+
+  List<Map<String, dynamic>> completedAppointments = [];
+
+  @override
+  void initState() {
+    super.initState();
+
+    /// if user booked from doctor screen
+    if (widget.selectedDoctor != null) {
+      upcomingAppointments.add(widget.selectedDoctor!);
+    }
+
+    /// demo completed data (optional remove later)
+    // completedAppointments.add({
+    //   "image": "assets/doctors/doc1.png",
+    //   "name": "Dr. Giovanni Bianchi",
+    //   "speciality": "General Surgery",
+    //   "dateTime": "Wednesday, 29 Feb 04.00 pm",
+    //   "location": "Clinic Address",
+    //   "hasReview": false,
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
+      backgroundColor: AppColors.white,
+
       appBar: AppBar(
-        backgroundColor: AppColors.background,
+        backgroundColor: AppColors.white,
         titleSpacing: 90,
         title: const Text("History"),
-        leading:
-            widget.selectedDoctor != null
-                ? IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_outlined),
-                )
-                : null,
+        leading: widget.selectedDoctor != null
+            ? IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+        )
+            : null,
       ),
 
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Container(
-          color: AppColors.background,
+          color: AppColors.white,
           child: Column(
+
             children: [
+
               /// TAB SWITCH
               HistoryTabSwitch(
                 selectedIndex: selectedTab,
@@ -64,97 +97,15 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
               const SizedBox(height: 16),
 
-              const Align(
-                alignment: Alignment.centerLeft,
-                child: Text("1 Minggu yang akan datang"),
-              ),
+
 
               const SizedBox(height: 10),
 
-              /// LIST
+              /// MAIN CONTENT
               Expanded(
-                child: widget.selectedDoctor != null
-                    ? ListView(
-                  children: [
-                    if (selectedTab == 0)
-                      AppointmentHistoryCard(
-                        image: widget.selectedDoctor!["image"] ??
-                            "assets/doctors/doc1.png",
-                        name: widget.selectedDoctor!["name"] ?? "Dr. Unknown",
-                        speciality:
-                        widget.selectedDoctor!["speciality"] ?? "Specialist",
-                        dateTime:
-                        widget.selectedDoctor!["dateTime"] ??
-                            "Wednesday, 29 Feb 04.00 pm",
-                        location:
-                        widget.selectedDoctor!["location"] ?? "Clinic Address",
-                        notificationOn: true,
-                      ),
-
-                    if (selectedTab == 1)
-                      CompletedHistoryCard(
-                        image: widget.selectedDoctor!["image"] ??
-                            "assets/doctors/doc1.png",
-                        name: widget.selectedDoctor!["name"] ?? "Dr. Unknown",
-                        speciality:
-                        widget.selectedDoctor!["speciality"] ?? "Specialist",
-                        dateTime:
-                        widget.selectedDoctor!["dateTime"] ??
-                            "Wednesday, 29 Feb 04.00 pm",
-                        location:
-                        widget.selectedDoctor!["location"] ?? "Clinic Address",
-                        hasReview: false,
-                      ),
-                  ],
-                )
-                    : ListView(
-                  children: [
-                    /// UPCOMING
-                    if (selectedTab == 0) ...[
-                      const AppointmentHistoryCard(
-                        image: "assets/doctors/doc1.png",
-                        name: "Dr. Giovanni Bianchi",
-                        speciality: "General Surgery",
-                        dateTime: "Wednesday, 29 Feb 04.00 pm",
-                        location:
-                        "Bella Vista Surgery Clinic, Via Garibaldi 10, Milan, Italy",
-                        notificationOn: true,
-                      ),
-                      const AppointmentHistoryCard(
-                        image: "assets/doctors/doc2.png",
-                        name: "Dr. Luca Rossi",
-                        speciality: "Cardiology Specialist",
-                        dateTime: "Wednesday, 22 Feb 1.00 pm",
-                        location:
-                        "Rossi Cardiology Clinic Via Garibaldi 15, Milan, Italy",
-                        notificationOn: false,
-                      ),
-                    ],
-
-                    /// COMPLETED
-                    if (selectedTab == 1) ...[
-                      const CompletedHistoryCard(
-                        image: "assets/doctors/doc1.png",
-                        name: "Dr. Giovanni Bianchi",
-                        speciality: "General Surgery",
-                        dateTime: "Wednesday, 29 Feb 04.00 pm",
-                        location:
-                        "Bella Vista Surgery Clinic, Via Garibaldi 10, Milan, Italy",
-                        hasReview: false,
-                      ),
-                      const CompletedHistoryCard(
-                        image: "assets/doctors/doc2.png",
-                        name: "Dr. Luca Rossi",
-                        speciality: "Cardiology Specialist",
-                        dateTime: "Wednesday, 22 Feb 1.00 pm",
-                        location:
-                        "Rossi Cardiology Clinic Via Garibaldi 15, Milan, Italy",
-                        hasReview: true,
-                      ),
-                    ],
-                  ],
-                ),
+                child: _buildContent(),
               ),
+
             ],
           ),
         ),
@@ -162,22 +113,102 @@ class _HistoryScreenState extends State<HistoryScreen> {
 
       bottomNavigationBar: widget.isStandalone
           ? CustomBottomNav(
-              currentIndex: widget.currentNavIndex,
-              onTap: (index) {
-                if (widget.onNavTap != null) {
-                  widget.onNavTap!(index);
-                } else {
-                  // Navigate to MainScreen with the selected index
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MainScreen(initialIndex: index),
-                    ),
-                  );
-                }
-              },
-            )
+        currentIndex: widget.currentNavIndex,
+        onTap: (index) {
+
+          if (widget.onNavTap != null) {
+            widget.onNavTap!(index);
+          }
+
+          else {
+
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => MainScreen(initialIndex: index),
+              ),
+            );
+          }
+        },
+      )
           : null,
     );
+  }
+
+  /// CONTENT BUILDER
+  Widget _buildContent() {
+
+    /// UPCOMING TAB
+    if (selectedTab == 0) {
+
+      if (upcomingAppointments.isEmpty) {
+
+        return const HistoryUpcomingEmpty();
+      }
+
+      return ListView.builder(
+
+        itemCount: upcomingAppointments.length,
+
+        itemBuilder: (context, index) {
+
+          final data = upcomingAppointments[index];
+
+          return AppointmentHistoryCard(
+
+            image: data["image"] ?? "assets/doctors/doc1.png",
+
+            name: data["name"] ?? "Dr. Unknown",
+
+            speciality: data["speciality"] ?? "Specialist",
+
+            dateTime: data["dateTime"]
+                ?? "Wednesday, 29 Feb 04.00 pm",
+
+            location: data["location"]
+                ?? "Clinic Address",
+
+            notificationOn: true,
+          );
+        },
+      );
+    }
+
+    /// COMPLETED TAB
+    else {
+
+      if (completedAppointments.isEmpty) {
+
+        return const HistoryCompletedEmpty();
+      }
+
+      return ListView.builder(
+
+        itemCount: completedAppointments.length,
+
+        itemBuilder: (context, index) {
+
+          final data = completedAppointments[index];
+
+          return CompletedHistoryCard(
+
+            image: data["image"] ?? "assets/doctors/doc1.png",
+
+            name: data["name"] ?? "Dr. Unknown",
+
+            speciality: data["speciality"] ?? "Specialist",
+
+            dateTime: data["dateTime"]
+                ?? "Wednesday, 29 Feb 04.00 pm",
+
+            location: data["location"]
+                ?? "Clinic Address",
+
+            hasReview: data["hasReview"] ?? false,
+          );
+        },
+      );
+    }
+
   }
 }
