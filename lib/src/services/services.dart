@@ -3,6 +3,8 @@ import 'package:medcare/utils/app_colors.dart';
 
 import 'package:medcare/src/services/screens/chat_doctor_screen.dart';
 
+import '../health_shop/shopping_screen/shopping_screen.dart';
+
 class Services extends StatefulWidget {
   @override
   State<Services> createState() => _ServicesState();
@@ -18,6 +20,7 @@ class _ServicesState extends State<Services> {
     {"title": "Article", "icon": "assets/icon/article.png"},
     {"title": "Medication Reminder", "icon": "assets/icon/medication.png"},
     {"title": "Specialization", "icon": "assets/icon/specialization.png"},
+    {"title": "Health Shop", "icon": "assets/icon/shop.png"},
   ];
 
   @override
@@ -69,7 +72,10 @@ class _ServicesState extends State<Services> {
                             selectedIndex = index;
                           });
                           if (items[index]["title"] == "Chat Doctor") {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => DoctorListScreen()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const DoctorListScreen()));
+                          }
+                          else if (items[index]["title"] == "Health Shop") {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const shopping_screen()));
                           }
                         },
                         size: itemSize,

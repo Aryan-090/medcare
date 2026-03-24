@@ -68,6 +68,8 @@ flutter:
     - assets/product/
     - assets/hospital/
     - assets/articles/
+    - assets/brands/
+    - assets/medicine/
 
 
 
