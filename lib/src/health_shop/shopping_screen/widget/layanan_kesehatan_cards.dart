@@ -17,12 +17,12 @@ class HealthServiceCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Container(
-
       width: 160,
 
       margin: const EdgeInsets.only(right: 14),
 
       decoration: BoxDecoration(
+
 
         borderRadius: BorderRadius.circular(16),
 

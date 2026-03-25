@@ -17,7 +17,9 @@ class ShoppingSearchbarHeader extends StatelessWidget {
           Row(
             children: [
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pop(context, 0);
+                },
                 icon: const Icon(
                   Icons.arrow_back_ios_new_outlined,
                   size: 16,
