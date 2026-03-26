@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/app_colors.dart';
+import '../medicine_description_screen.dart';
 
 class ProductCard extends StatelessWidget {
-
   final String image;
   final String title;
   final String price;
@@ -14,11 +14,11 @@ class ProductCard extends StatelessWidget {
     required this.price,
   });
 
+  get medicine => null;
+
   @override
   Widget build(BuildContext context) {
-
     return Container(
-
       width: 170,
 
       margin: const EdgeInsets.only(right: 14),
@@ -26,7 +26,6 @@ class ProductCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
 
       decoration: BoxDecoration(
-
         color: AppColors.white,
 
         borderRadius: BorderRadius.circular(16),
@@ -42,106 +41,101 @@ class ProductCard extends StatelessWidget {
         ],
       ),
 
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-
-        children: [
-
-          /// image
-          Center(
-            child: Image.asset(
-              image,
-              height: 70,
-              fit: BoxFit.contain,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder:
+                  (context) => MedicineDescriptionScreen(medicine: {
+                    "image": image,
+                    "title": title,
+                    "price": price,
+                    // Add other keys if needed for the description screen
+                  },),
             ),
-          ),
+          );
+        },
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
 
-          const SizedBox(height: 8),
+          children: [
+            /// image
+            Center(child: Image.asset(image, height: 70, fit: BoxFit.contain)),
 
-          /// title
-          Text(
-            title,
+            const SizedBox(height: 8),
 
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
+            /// title
+            Text(
+              title,
 
-            style: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w600,
-              color: AppColors.text,
-            ),
-          ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
 
-          const SizedBox(height: 2),
-
-          const Text(
-            "Per Strip",
-
-            style: TextStyle(
-              fontSize: 11,
-              color: AppColors.subText,
-            ),
-          ),
-
-          const Spacer(),   // prevents overflow
-
-          const Text(
-            "Start from",
-
-            style: TextStyle(
-              fontSize: 10,
-              color: AppColors.disableText,
-            ),
-          ),
-
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-            children: [
-
-              Text(
-                price,
-
-                style: const TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  color: AppColors.primary,
-                ),
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w600,
+                color: AppColors.text,
               ),
+            ),
 
-              SizedBox(
-                height: 30,
+            const SizedBox(height: 2),
 
-                child: OutlinedButton(
+            const Text(
+              "Per Strip",
 
-                  onPressed: () {},
+              style: TextStyle(fontSize: 11, color: AppColors.subText),
+            ),
 
-                  style: OutlinedButton.styleFrom(
+            const Spacer(), // prevents overflow
 
-                    padding: const EdgeInsets.symmetric(horizontal: 12),
+            const Text(
+              "Start from",
 
-                    side: const BorderSide(
-                      color: AppColors.primary,
-                    ),
+              style: TextStyle(fontSize: 10, color: AppColors.disableText),
+            ),
 
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+              children: [
+                Text(
+                  price,
+
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.primary,
                   ),
+                ),
 
-                  child: const Text(
-                    "Add",
+                SizedBox(
+                  height: 30,
 
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: AppColors.primary,
+                  child: OutlinedButton(
+                    onPressed: () {},
+
+                    style: OutlinedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 12),
+
+                      side: const BorderSide(color: AppColors.primary),
+
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+
+                    child: const Text(
+                      "Add",
+
+                      style: TextStyle(fontSize: 12, color: AppColors.primary),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

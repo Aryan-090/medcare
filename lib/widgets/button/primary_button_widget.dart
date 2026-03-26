@@ -9,6 +9,8 @@ class PrimaryButtonWidget extends StatelessWidget {
     this.radius,
     this.backgroundColor,
     this.color,
+    this.width,
+    this.padding,
   });
 
   final String title;
@@ -16,6 +18,10 @@ class PrimaryButtonWidget extends StatelessWidget {
   final double? radius;
   final Color? backgroundColor;
   final Color? color;
+  final double? width;
+  final EdgeInsetsGeometry? padding;
+
+
 
 
   @override
