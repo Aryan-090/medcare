@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../../../utils/app_colors.dart';
 import '../medicine_description_screen.dart';
+import 'add_to_cart_card.dart';
 
 class ProductCard extends StatelessWidget {
   final String image;
@@ -14,10 +15,15 @@ class ProductCard extends StatelessWidget {
     required this.price,
   });
 
-  get medicine => null;
-
   @override
   Widget build(BuildContext context) {
+    /// medicine map used everywhere
+    final Map<String, String> medicine = {
+      "image": image,
+      "title": title,
+      "price": price,
+    };
+
     return Container(
       width: 170,
 
@@ -41,101 +47,119 @@ class ProductCard extends StatelessWidget {
         ],
       ),
 
-      child: GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder:
-                  (context) => MedicineDescriptionScreen(medicine: {
-                    "image": image,
-                    "title": title,
-                    "price": price,
-                    // Add other keys if needed for the description screen
-                  },),
-            ),
-          );
-        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
 
-          children: [
-            /// image
-            Center(child: Image.asset(image, height: 70, fit: BoxFit.contain)),
+        children: [
+          /// CLICKABLE AREA ONLY FOR DETAILS SCREEN
+          Expanded(
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
 
-            const SizedBox(height: 8),
+                  MaterialPageRoute(
+                    builder:
+                        (context) =>
+                            MedicineDescriptionScreen(medicine: medicine),
+                  ),
+                );
+              },
 
-            /// title
-            Text(
-              title,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
 
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+                children: [
+                  Center(
+                    child: Image.asset(image, height: 70, fit: BoxFit.contain),
+                  ),
 
-              style: const TextStyle(
-                fontSize: 13,
-                fontWeight: FontWeight.w600,
-                color: AppColors.text,
+                  const SizedBox(height: 8),
+
+                  Text(
+                    title,
+
+                    maxLines: 2,
+
+                    overflow: TextOverflow.ellipsis,
+
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w600,
+                      color: AppColors.text,
+                    ),
+                  ),
+
+                  const SizedBox(height: 2),
+
+                  const Text(
+                    "Per Strip",
+                    style: TextStyle(fontSize: 11, color: AppColors.subText),
+                  ),
+                ],
               ),
             ),
+          ),
 
-            const SizedBox(height: 2),
+          /// PRICE + ADD BUTTON (NOT inside GestureDetector)
+          const Text(
+            "Start from",
 
-            const Text(
-              "Per Strip",
+            style: TextStyle(fontSize: 10, color: AppColors.disableText),
+          ),
 
-              style: TextStyle(fontSize: 11, color: AppColors.subText),
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
 
-            const Spacer(), // prevents overflow
+            children: [
+              Text(
+                price,
 
-            const Text(
-              "Start from",
-
-              style: TextStyle(fontSize: 10, color: AppColors.disableText),
-            ),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
-              children: [
-                Text(
-                  price,
-
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.primary,
-                  ),
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.primary,
                 ),
+              ),
 
-                SizedBox(
-                  height: 30,
+              SizedBox(
+                height: 30,
 
-                  child: OutlinedButton(
-                    onPressed: () {},
+                child: OutlinedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
 
-                    style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      isScrollControlled: true,
 
-                      side: const BorderSide(color: AppColors.primary),
+                      backgroundColor: Colors.transparent,
 
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
+                      builder: (context) {
+                        return AddToCartCard(medicine: medicine);
+                      },
+                    );
+                  },
 
-                    child: const Text(
-                      "Add",
+                  style: OutlinedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
 
-                      style: TextStyle(fontSize: 12, color: AppColors.primary),
+                    side: const BorderSide(color: AppColors.primary),
+
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
                     ),
                   ),
+
+                  child: const Text(
+                    "Add",
+
+                    style: TextStyle(fontSize: 12, color: AppColors.primary),
+                  ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

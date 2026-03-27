@@ -11,6 +11,7 @@ class PrimaryButtonWidget extends StatelessWidget {
     this.color,
     this.width,
     this.padding,
+    this.crossAxisAlignment
   });
 
   final String title;
@@ -20,6 +21,10 @@ class PrimaryButtonWidget extends StatelessWidget {
   final Color? color;
   final double? width;
   final EdgeInsetsGeometry? padding;
+  final CrossAxisAlignment? crossAxisAlignment;
+
+
+
 
 
 

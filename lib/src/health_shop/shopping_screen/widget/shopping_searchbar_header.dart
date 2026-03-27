@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../utils/app_colors.dart';
+import '../cart_screen.dart';
 
 class ShoppingSearchbarHeader extends StatelessWidget {
   const  ShoppingSearchbarHeader({super.key});
@@ -46,10 +47,15 @@ class ShoppingSearchbarHeader extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              SizedBox(
-                  height: 48,
-                  width: 48,
-                  child: ImageIcon(const AssetImage('assets/icon/cart.png'), size: 14, color: AppColors.black)),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> CartScreen()));
+                },
+                child: SizedBox(
+                    height: 48,
+                    width: 48,
+                    child: ImageIcon(const AssetImage('assets/icon/cart.png'), size: 14, color: AppColors.black)),
+              ),
             ],
           ),
         ],
