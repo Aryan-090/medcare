@@ -4,6 +4,7 @@ import 'package:medcare/utils/app_colors.dart';
 import 'package:medcare/src/services/screens/chat_doctor_screen.dart';
 
 import '../health_shop/shopping_screen/shopping_screen.dart';
+import '../hospital/list_hospital_screen.dart';
 
 class Services extends StatefulWidget {
   @override
@@ -76,6 +77,9 @@ class _ServicesState extends State<Services> {
                           }
                           else if (items[index]["title"] == "Health Shop") {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const shopping_screen()));
+                          }
+                          else if (items[index]["title"] == "Hospital") {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ListHospitalScreen()));
                           }
                         },
                         size: itemSize,

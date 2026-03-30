@@ -11,7 +11,9 @@ class PrimaryButtonWidget extends StatelessWidget {
     this.color,
     this.width,
     this.padding,
-    this.crossAxisAlignment
+    this.crossAxisAlignment,
+    this.icon,
+    this.border,
   });
 
   final String title;
@@ -22,29 +24,47 @@ class PrimaryButtonWidget extends StatelessWidget {
   final double? width;
   final EdgeInsetsGeometry? padding;
   final CrossAxisAlignment? crossAxisAlignment;
-
-
-
-
-
-
+  final Widget? icon;
+  final BorderSide? border; // changed to BorderSide for button border
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onTap,
-      style: ElevatedButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radius ?? 24),
+    return SizedBox(
+      width: width,
+      child: ElevatedButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          padding: padding,
+          alignment: Alignment.center,
+          backgroundColor: backgroundColor ?? AppColors.primary,
+
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(radius ?? 24),
+
+            // Apply border only if provided
+            side: border ?? BorderSide.none,
+          ),
         ),
-        backgroundColor: backgroundColor ?? AppColors.primary,
-      ),
-      child: Text(
-        title,
-        style: TextStyle(
-          color: color ?? AppColors.white,
-          fontSize: 16,
-          fontWeight: FontWeight.w500,
+
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: color ?? AppColors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+
+            if (icon != null) ...[
+              const SizedBox(width: 8),
+              icon!,
+            ],
+          ],
         ),
       ),
     );
