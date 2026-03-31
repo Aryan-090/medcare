@@ -14,6 +14,7 @@ class PrimaryButtonWidget extends StatelessWidget {
     this.crossAxisAlignment,
     this.icon,
     this.border,
+    this.height,
   });
 
   final String title;
@@ -26,11 +27,14 @@ class PrimaryButtonWidget extends StatelessWidget {
   final CrossAxisAlignment? crossAxisAlignment;
   final Widget? icon;
   final BorderSide? border; // changed to BorderSide for button border
+  final double? height;
+
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width,
+      height: height,
       child: ElevatedButton(
         onPressed: onTap,
         style: ElevatedButton.styleFrom(

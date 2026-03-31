@@ -42,10 +42,10 @@ class _ServicesState extends State<Services> {
                   children: [
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+                      icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
                     ),
-                    SizedBox(width: 85),
-                    Center(
+                    const SizedBox(width: 85),
+                    const Center(
                       child: Text(
                         "Services",
                         style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
@@ -53,7 +53,7 @@ class _ServicesState extends State<Services> {
                     ),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Expanded(
                   child: GridView.builder(
                     itemCount: items.length,

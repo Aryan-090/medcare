@@ -89,6 +89,7 @@ class ListHospitalScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const HospitalCardWidget(
+                  key: const Key('key1'),
                   title: 'Ospeddale San Raffaele',
                   image: Image(
                     image: AssetImage('assets/hospital/hospital3.png'),
@@ -99,6 +100,7 @@ class ListHospitalScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const HospitalCardWidget(
+                  key: const Key('key2'),
                   title: 'Ospeddale San Raffaele',
                   image: Image(
                     image: AssetImage('assets/hospital/hospital3.png'),
@@ -109,6 +111,7 @@ class ListHospitalScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const HospitalCardWidget(
+                  key: const Key('key3'),
                   title: 'IRCCS Istituto Ortopedico Galeazzi',
                   image: Image(
                     image: AssetImage('assets/hospital/hospital3.png'),

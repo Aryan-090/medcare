@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medcare/widgets/button/primary_button_widget.dart';
 
 import '../../../utils/app_colors.dart';
-import 'hospital_detail_screen.dart';
+import '../hospital_detail_screen.dart';
 
 class HospitalCardWidget extends StatelessWidget {
   const HospitalCardWidget({
@@ -112,28 +112,44 @@ class HospitalCardWidget extends StatelessWidget {
                   title: 'Bed Detail',
                   backgroundColor: AppColors.white,
                   color: AppColors.primary,
-                  border: BorderSide(color: AppColors.primary),
+                  border: const BorderSide(color: AppColors.primary),
                 ),
               ),
               const SizedBox(width: 10),
-              Expanded(
-                flex: 1,
-                child: Row(
-                  children: [
-                    PrimaryButtonWidget(
-                      onTap: () {},
-                      title: 'Location',
-                      backgroundColor: AppColors.primary,
-                      color: AppColors.white,
-                      icon: const Icon(
-                        Icons.arrow_forward_ios_outlined,
-                        size: 14,
+              if (key != null) ...[
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      PrimaryButtonWidget(
+                        onTap: () {},
+                        title: 'Location',
+                        backgroundColor: AppColors.primary,
+                        color: AppColors.white,
+                        icon: const Icon(
+                          Icons.arrow_forward_ios_outlined,
+                          size: 14,
+                          color: AppColors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ] else ...[
+                Expanded(
+                  flex: 1,
+                  child: Row(
+                    children: [
+                      PrimaryButtonWidget(
+                        onTap: () {},
+                        title: 'Contact Now',
+                        backgroundColor: AppColors.primary,
                         color: AppColors.white,
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+              ],
             ],
           ),
         ],
