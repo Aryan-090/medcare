@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medcare/src/medication_reminder/medication_reminder_screen.dart';
 import 'package:medcare/utils/app_colors.dart';
 
 import 'package:medcare/src/services/screens/chat_doctor_screen.dart';
@@ -80,6 +81,9 @@ class _ServicesState extends State<Services> {
                           }
                           else if (items[index]["title"] == "Hospital") {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const ListHospitalScreen()));
+                          }
+                          else if (items[index]["title"] == "Medication Reminder") {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const MedicationReminderScreen()));
                           }
                         },
                         size: itemSize,
