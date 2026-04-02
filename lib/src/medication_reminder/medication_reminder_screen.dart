@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medcare/src/medication_reminder/widget/reminder_medicine_card.dart';
 import 'package:medcare/widgets/button/primary_button_widget.dart';
 
+import 'medication_reminder_empty_screen.dart';
+
 class MedicationReminderScreen extends StatelessWidget {
   const MedicationReminderScreen({super.key});
 
@@ -51,7 +53,14 @@ class MedicationReminderScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PrimaryButtonWidget(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const MedicationReminderEmptyScreen(),
+                      ),
+                    );
+                  },
                   title: 'Add Medicine',
                   height: 45,
 
