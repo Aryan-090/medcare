@@ -4,6 +4,7 @@ import 'package:medcare/utils/app_colors.dart';
 
 import 'package:medcare/src/services/screens/chat_doctor_screen.dart';
 
+import '../article/list_article_screen.dart';
 import '../health_shop/shopping_screen/shopping_screen.dart';
 import '../hospital/list_hospital_screen.dart';
 import '../specialization/specialist_screen.dart';
@@ -88,6 +89,9 @@ class _ServicesState extends State<Services> {
                           }
                           else if (items[index]["title"] == "Specialization") {
                             Navigator.push(context, MaterialPageRoute(builder: (context) => const SpecialistScreen()));
+                          }
+                          else if (items[index]["title"] == "Article") {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ListArticleScreen()));
                           }
                         },
                         size: itemSize,
