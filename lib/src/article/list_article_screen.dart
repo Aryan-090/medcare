@@ -114,24 +114,38 @@ class _ListArticleScreenState extends State<ListArticleScreen> {
 
               const SizedBox(height: 12),
 
-              const SizedBox(
+              SizedBox(
                 height: 80,
 
-                child: Row(
+                child: ListView.builder(
 
-                  children: [
+                  scrollDirection: Axis.horizontal,
 
-                    TopicCard(title: "Mental Health"),
+                  itemCount: articles.length,
 
-                    SizedBox(width: 12),
+                  itemBuilder: (_, index){
 
-                    TopicCard(title: "Lifestyle"),
+                    return const Padding(
+                      padding: EdgeInsets.only(right: 12),
 
-                    SizedBox(width: 12),
+                      child: Row(
 
-                    TopicCard(title: "Covid-19"),
+                        children: [
 
-                  ],
+                          TopicCard(title: "Mental Health", image: AssetImage('assets/articles/mental_health.png'),),
+
+                          SizedBox(width: 12),
+
+                          TopicCard(title: "Lifestyle", image: AssetImage('assets/articles/lifestyle.png'),),
+
+                          SizedBox(width: 12),
+
+                          TopicCard(title: "Covid-19", image: AssetImage('assets/articles/mental_health.png'),),
+
+                        ],
+                      ),
+                    );
+                  },
                 ),
               ),
 
@@ -165,6 +179,7 @@ class _ListArticleScreenState extends State<ListArticleScreen> {
 
               ArticleListTile(article: articles[0]),
               ArticleListTile(article: articles[1]),
+
 
             ],
           ),

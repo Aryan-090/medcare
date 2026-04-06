@@ -3,10 +3,13 @@ import 'package:flutter/material.dart';
 class TopicCard extends StatelessWidget {
 
   final String title;
+  final AssetImage image;
+
 
   const TopicCard({
     super.key,
     required this.title,
+    required this.image
   });
 
   @override
@@ -14,15 +17,15 @@ class TopicCard extends StatelessWidget {
 
     return Container(
 
-      width: 120,
+      width: 140,
 
       decoration: BoxDecoration(
 
         borderRadius: BorderRadius.circular(10),
 
-        image: const DecorationImage(
+        image: DecorationImage(
 
-          image: AssetImage("assets/articles/topic.png"),
+          image: image,
 
           fit: BoxFit.cover,
         ),

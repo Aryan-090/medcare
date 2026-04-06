@@ -43,7 +43,9 @@ class _HomeTabState extends State<SpecialistScreen> {
         title: const Text("Specialist", style: TextStyle(fontSize: 18)),
         centerTitle: true,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(Icons.arrow_back_ios_new, size: 18),
         ),
       ),

@@ -3,20 +3,14 @@ import '../article_detail_screen.dart';
 import 'article_model.dart';
 
 class ArticleListTile extends StatelessWidget {
-
   final ArticleModel article;
 
-  const ArticleListTile({
-    super.key,
-    required this.article,
-  });
+  const ArticleListTile({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
-
-      onTap: (){
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -26,15 +20,11 @@ class ArticleListTile extends StatelessWidget {
       },
 
       child: Container(
-
         margin: const EdgeInsets.only(bottom: 14),
 
         child: Row(
-
           children: [
-
             ClipRRect(
-
               borderRadius: BorderRadius.circular(8),
 
               child: Image.asset(
@@ -47,15 +37,23 @@ class ArticleListTile extends StatelessWidget {
 
             const SizedBox(width: 10),
 
-            Expanded(
-
-              child: Text(
-                article.title,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Adults',
+                  style: TextStyle(fontSize: 12, color: Colors.grey),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Text(
+                    article.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
-
           ],
         ),
       ),
