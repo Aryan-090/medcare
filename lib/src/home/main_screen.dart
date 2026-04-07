@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medcare/src/services/services.dart';
 import '../../widgets/bottomNavigationBar/custom_bottom_nav.dart';
 import '../history/history_screen.dart';
+import '../profile/profile_screen.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -32,7 +33,13 @@ class _MainScreenState extends State<MainScreen> {
         currentNavIndex: currentIndex,
         onNavTap: _handleNavigation,
       ),
-      const Center(child: Text("Profile")),
+      ProfileScreen(
+
+        currentIndex: currentIndex,
+
+        onTap: _handleNavigation,
+
+      ),
     ];
   }
 
@@ -45,8 +52,18 @@ class _MainScreenState extends State<MainScreen> {
         currentNavIndex: index,
         onNavTap: _handleNavigation,
       );
+
+      /// update ProfileScreen index also
+      screens[3] = ProfileScreen(
+
+        currentIndex: index,
+
+        onTap: _handleNavigation,
+
+      );
     });
   }
+
 
   void _setSelectedDoctor(Map<String, String> doctor) {
     setState(() {
