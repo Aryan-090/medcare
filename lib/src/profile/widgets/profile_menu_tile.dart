@@ -6,6 +6,7 @@ class ProfileMenuTile extends StatelessWidget {
   final IconData icon;
   final String title;
   final String? subtitle;
+  final Function()? onTap;
 
   const ProfileMenuTile({
 
@@ -14,6 +15,7 @@ class ProfileMenuTile extends StatelessWidget {
     required this.icon,
     required this.title,
     this.subtitle,
+    this.onTap,
 
   });
 
