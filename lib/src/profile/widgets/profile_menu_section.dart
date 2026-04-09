@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:medcare/src/profile/transaction_screen.dart';
 import '../../../utils/app_colors.dart';
+import '../account_setting_screen.dart';
 import '../health_history_screen.dart';
 import '../prescription_history_screen.dart';
 import 'profile_menu_tile.dart';
@@ -56,21 +58,22 @@ class ProfileMenuSection extends StatelessWidget {
             ),
           ),
 
-          ProfileMenuTile(
-            icon: Icons.account_balance_wallet_outlined,
-
-            title: "Transactions",
-
-            subtitle: "Look back at your previous transactions",
-
+          GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const PrescriptionHistoryScreen(),
+                  builder: (context) => const TransactionScreen(),
                 ),
               );
             },
+            child: const ProfileMenuTile(
+              icon: Icons.account_balance_wallet_outlined,
+
+              title: "Transactions",
+
+              subtitle: "Look back at your previous transactions",
+            ),
           ),
         ],
       ),
@@ -102,9 +105,19 @@ class ProfileSettingsSection extends StatelessWidget {
 
       child: Column(
         children: [
-          const ProfileMenuTile(
-            icon: Icons.settings_outlined,
-            title: "Account Settings",
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AccountSettingScreen(),
+                ),
+              );
+            },
+            child: const ProfileMenuTile(
+              icon: Icons.settings_outlined,
+              title: "Account Settings",
+            ),
           ),
 
           const ProfileMenuTile(
