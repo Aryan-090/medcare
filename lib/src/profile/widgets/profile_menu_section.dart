@@ -3,6 +3,8 @@ import 'package:medcare/src/profile/transaction_screen.dart';
 import '../../../utils/app_colors.dart';
 import '../account_setting_screen.dart';
 import '../health_history_screen.dart';
+import '../notification_empty.dart';
+import '../notification_screen.dart';
 import '../prescription_history_screen.dart';
 import 'profile_menu_tile.dart';
 
@@ -120,9 +122,19 @@ class ProfileSettingsSection extends StatelessWidget {
             ),
           ),
 
-          const ProfileMenuTile(
-            icon: Icons.notifications_none,
-            title: "Notifications",
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const NotificationEmpty(),
+                ),
+              );
+            },
+            child: const ProfileMenuTile(
+              icon: Icons.notifications_none,
+              title: "Notifications",
+            ),
           ),
 
           const ProfileMenuTile(
