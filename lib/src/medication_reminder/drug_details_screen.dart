@@ -4,7 +4,7 @@ import 'package:medcare/src/medication_reminder/widget/medicine_info_card.dart';
 import 'package:medcare/src/medication_reminder/widget/medicine_model.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/button/primary_button_widget.dart';
-import '../services/widgets/notification_toggle.dart';
+import '../service_screen/widgets/notification_toggle.dart';
 import 'medication_reminder_empty_screen.dart';
 
 class DrugDetailsScreen extends StatefulWidget {

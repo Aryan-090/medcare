@@ -4,7 +4,7 @@ import 'package:medcare/src/health_shop/shopping_screen/widget/section_title.dar
 import 'package:medcare/widgets/button/primary_button_widget.dart';
 
 import '../../../utils/app_colors.dart';
-import '../../services/widgets/review_card.dart';
+import '../../service_screen/widgets/review_card.dart';
 
 class MedicineDescriptionScreen extends StatefulWidget {
   final Map<String, String> medicine;

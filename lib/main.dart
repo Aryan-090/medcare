@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medcare/src/health_shop/shopping_screen/medicine_description_screen.dart';
 import 'package:medcare/src/home/home_screen.dart';
 import 'package:medcare/src/home/main_screen.dart';
+import 'package:medcare/src/splash/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      home: MainScreen(),
+      home: SplashScreen(),
     );
   }
 }

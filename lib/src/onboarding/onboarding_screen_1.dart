@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/button/primary_button_widget.dart';
+import '../services/local_storage_service.dart';
 import '../splash/widgets/splash_screen_1.dart';
 import 'widgets/onboarding_common.dart';
 
@@ -12,7 +13,6 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-
   final PageController _controller = PageController();
   int currentPage = 0;
 
@@ -21,19 +21,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       "image": "assets/img/walkthrough_1.png",
       "title": "Online Consultation",
       "desc":
-      "Connect with healthcare professionals virtually for convenient medical advice and support."
+          "Connect with healthcare professionals virtually for convenient medical advice and support.",
     },
     {
       "image": "assets/img/walkthrough_2.png",
       "title": "24 Hours Ready to Serve",
       "desc":
-      "Instant access to expert medical assistance. Get the care you need, when you need it, with our app."
+          "Instant access to expert medical assistance. Get the care you need, when you need it, with our app.",
     },
     {
       "image": "assets/img/walkthrough_3.png",
       "title": "Medical Record Data Patient",
       "desc":
-      "Easily manage and access comprehensive health records, including medical history, test result, and treatement plans, all in one secure place."
+          "Easily manage and access comprehensive health records, including medical history, test result, and treatement plans, all in one secure place.",
     },
   ];
 
@@ -50,7 +50,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       body: SafeArea(
         child: Column(
           children: [
-
             /// TOP PART SLIDES
             Expanded(
               child: PageView.builder(
@@ -76,14 +75,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 onboardingData.length,
-                    (index) => Container(
+                (index) => Container(
                   margin: const EdgeInsets.symmetric(horizontal: 4),
                   width: currentPage == index ? 10 : 6,
                   height: currentPage == index ? 10 : 6,
                   decoration: BoxDecoration(
-                    color: currentPage == index
-                        ? AppColors.primary
-                        : AppColors.circleBackground,
+                    color:
+                        currentPage == index
+                            ? AppColors.primary
+                            : AppColors.circleBackground,
                     shape: BoxShape.circle,
                   ),
                 ),
@@ -101,21 +101,23 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: PrimaryButtonWidget(
                   title: currentPage == 2 ? "Start" : "Next",
                   radius: 30,
-                  onTap: () {
+                  onTap: () async {
+                    if (currentPage == onboardingData.length - 1) {
+                      /// mark onboarding completed
+                      await LocalStorageService.setFirstTimeDone();
 
-                    if (currentPage == 2) {
-                      /// LAST PAGE → Navigate
-                      Navigator.push(
+                      /// go to splash intro screen (SplashScreen1)
+                      Navigator.pushReplacement(
                         context,
+
                         MaterialPageRoute(
                           builder: (context) => const SplashScreen1(),
                         ),
                       );
                     } else {
-                      /// NOT LAST PAGE → Go to next onboarding
+                      /// go to next page
                       nextPage();
                     }
-
                   },
                 ),
               ),

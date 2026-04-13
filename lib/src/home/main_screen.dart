@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:medcare/src/services/services.dart';
 import '../../widgets/bottomNavigationBar/custom_bottom_nav.dart';
 import '../history/history_screen.dart';
 import '../profile/profile_screen.dart';
+import '../service_screen/services.dart';
 import 'home_screen.dart';
 
 class MainScreen extends StatefulWidget {

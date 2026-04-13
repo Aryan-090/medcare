@@ -1,17 +1,65 @@
 import 'package:flutter/material.dart';
 import '../../../utils/app_colors.dart';
 import '../../../widgets/button/primary_button_widget.dart';
-import '../../verification/verification_successfull.dart';
+import '../../home/main_screen.dart';
+import '../../services/local_storage_service.dart';
 
-class OtpPhoneWidget extends StatelessWidget {
+class OtpPhoneWidget extends StatefulWidget {
   final String phone;
 
   const OtpPhoneWidget({super.key, required this.phone});
 
   @override
+  State<OtpPhoneWidget> createState() => _OtpPhoneWidgetState();
+}
+
+class _OtpPhoneWidgetState extends State<OtpPhoneWidget> {
+  final List<TextEditingController> controllers = List.generate(
+    4,
+    (_) => TextEditingController(),
+  );
+
+  final List<FocusNode> focusNodes = List.generate(4, (_) => FocusNode());
+
+  String otp = "";
+
+  void onChanged(String value, int index) {
+    if (value.isNotEmpty && index < 3) {
+      focusNodes[index + 1].requestFocus();
+    }
+
+    if (value.isEmpty && index > 0) {
+      focusNodes[index - 1].requestFocus();
+    }
+
+    otp = controllers.map((e) => e.text).join();
+  }
+
+  Future<void> verifyOtp() async {
+    if (otp.length != 4) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text("Enter 4 digit OTP")));
+
+      return;
+    }
+
+    await LocalStorageService.setLoggedIn(true);
+
+    Navigator.pushAndRemoveUntil(
+      context,
+
+      MaterialPageRoute(builder: (_) => const MainScreen()),
+
+      (route) => false,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
+
       child: Column(
         children: [
           const SizedBox(height: 40),
@@ -24,7 +72,7 @@ class OtpPhoneWidget extends StatelessWidget {
           const SizedBox(height: 8),
 
           Text(
-            phone,
+            widget.phone,
             style: const TextStyle(
               color: AppColors.primary,
               fontWeight: FontWeight.w500,
@@ -33,22 +81,35 @@ class OtpPhoneWidget extends StatelessWidget {
 
           const SizedBox(height: 40),
 
-          /// OTP BOXES
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+
             children: List.generate(
               4,
+
               (index) => SizedBox(
                 width: 55,
                 height: 55,
+
                 child: TextField(
+                  controller: controllers[index],
+
+                  focusNode: focusNodes[index],
+
                   textAlign: TextAlign.center,
+
                   keyboardType: TextInputType.number,
+
                   maxLength: 1,
+
                   decoration: const InputDecoration(
                     counterText: "",
                     border: OutlineInputBorder(),
                   ),
+
+                  onChanged: (value) {
+                    onChanged(value, index);
+                  },
                 ),
               ),
             ),
@@ -59,10 +120,8 @@ class OtpPhoneWidget extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             height: 52,
-            child: PrimaryButtonWidget(title: "Continue", onTap: () {
-              Navigator.push(context, MaterialPageRoute(
-                  builder: (context) => const VerificationSuccess()));
-            }),
+
+            child: PrimaryButtonWidget(title: "Continue", onTap: verifyOtp),
           ),
 
           const SizedBox(height: 20),

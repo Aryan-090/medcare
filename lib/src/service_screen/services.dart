@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medcare/src/medication_reminder/medication_reminder_screen.dart';
+import 'package:medcare/src/service_screen/screens/chat_doctor_screen.dart';
 import 'package:medcare/utils/app_colors.dart';
-
-import 'package:medcare/src/services/screens/chat_doctor_screen.dart';
-
 import '../article/list_article_screen.dart';
 import '../health_shop/shopping_screen/shopping_screen.dart';
 import '../hospital/list_hospital_screen.dart';

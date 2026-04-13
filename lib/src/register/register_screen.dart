@@ -20,7 +20,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.background,
-        leading: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_new_rounded, size: 18),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       backgroundColor: AppColors.background,
       body: SafeArea(
